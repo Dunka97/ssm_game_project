@@ -499,7 +499,12 @@
 					contentType:"application/json",
 					success:function(data){
 						//获取名字列表
-						alert(data[0]);
+						//alert(data[0]);
+						var str ="";
+						for(var i=0; i<data.length; i++){
+							str +=data[i]+" ";
+						}
+						$(divObj).html(str);
 					}
 						
 				});
