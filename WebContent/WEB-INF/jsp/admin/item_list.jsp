@@ -105,8 +105,8 @@
 	                                        	<tr>
 	                                                <td>${item.item_id }</td>
 	                                                <td>${item.item_name }</td>
-													<td>${item.item_tagids }</td>
-													<td>${item.item_platform }</td>
+													<td class="item_tag_name">${item.item_tagids }</td>
+													<td class="item_tag_platform">${item.item_platform }</td>
 	                                                <td>${item.item_discount==0?'无折扣':item.item_discount }</td>
 	                                                <td>${item.item_original_price }</td>
 	                                                <td>${item.item_cap_image }</td>
@@ -476,10 +476,35 @@
             yukon_footable.goodslist();
             //datepicker
             yukon_datepicker.p_forms_extended();
-            
+            init();
         
         })
-       
+       function init(){
+			//获取所有class为item_tag_name 的td
+			$(".item_tag_name").each(function(){
+				//获取td内容数组
+				var ids = $(this).html();
+				//拆分数组
+				var idArray = ids.split("#");
+				
+				//获取div的obj
+				var divObj = $(this);
+				
+				//使用ajax发送数据
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath }/admin/items/AdminTags",
+					data:JSON.stringify(idArray),
+					dataType:"json",
+					contentType:"application/json",
+					success:function(data){
+						//获取名字列表
+						alert(data[0]);
+					}
+						
+				});
+			});
+		}
 		</script>
     </body>
 </html>
