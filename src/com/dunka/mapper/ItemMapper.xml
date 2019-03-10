@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.dunka.mapper.ItemMapper">
+  	<!-- 	//查询所有游戏项目
+	List<ItemInfo> selectAll(); -->
+	<select id="selectAll" resultType="ItemInfo">
+		SELECT * 
+		FROM item_info 
+		order by item_release_date desc;
+	</select>
+  </mapper>
