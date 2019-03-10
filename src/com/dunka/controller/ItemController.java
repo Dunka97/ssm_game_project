@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dunka.bean.ItemInfo;
+import com.dunka.bean.ItemInfoVo;
 import com.dunka.service.DictService;
 import com.dunka.service.ItemService;
 
@@ -28,10 +29,15 @@ public class ItemController {
 	private DictService dictService;
 	
 	@RequestMapping("")
-	public String select(Model model) {
+	public String select(Model model,ItemInfoVo vo) {
 //		查询所有游戏项目
-	    List<ItemInfo> itemList = itemService.selectAll();
+//	    List<ItemInfo> itemList = itemService.selectAll();
+//		根据Vo返回项目
+		List<ItemInfo> itemList = itemService.selectItemByVo(vo);
+		System.out.println(vo.getSort_name()+" "+vo.getSort_rule());
+		
 	    System.out.println(itemList);
+	    model.addAttribute("itemInfoVo", vo);
 	    model.addAttribute("itemList", itemList);
 	    
 	    return "admin/item_list";

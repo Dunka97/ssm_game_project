@@ -61,9 +61,9 @@
 	                                </div>
 	                                
 	                                <!-- 提交字段 -->
-	                                <input type="hidden" name="search_form_sort_name" id="sort_id" value=""/>
+	                                <input type="hidden" name="sort_name" id="search_form_sort_name" value=""/>
 	                                <!-- 提交规则 -->
-	                                <input type="hidden" name="search_form_sort_rule" id="sort_rule" value=""/>
+	                                <input type="hidden" name="sort_rule" id="search_form_sort_rule" value="${itemInfoVo.sort_rule}"/>
 	                                
 	                                <!--按类型或者平台选择-->
 	                                <div class="col-md-1">
@@ -90,17 +90,17 @@
                                                 <th>类型</th>
                                                 <th>平台</th>
                                                 <!-- 调用排序方法，将自己的字段名传 -->
-                                                <th>折扣</th>
-                                                <th>原价</th>
+                                                <th onclick="sort('item_discount')">折扣</th>
+                                                <th onclick="sort('item_original_price')">原价</th>
                                                 <th>图片地址</th>
-                                                <th>发售日期</th>
-                                                <th>是否热门</th>
-                                                <th>是否畅销</th>
-                                                <th>是否免费</th>
-                                                <th>是否特价</th>
-                                                <th>是否即将推出</th>
-                                                <th>是否新品</th>
-                                                <th>状态</th>
+                                                <th onclick="sort('item_release_date')">发售日期</th>
+                                                <th onclick="sort('is_hot')">是否热门</th>
+                                                <th onclick="sort('is_hot_sale')">是否畅销</th>
+                                                <th onclick="sort('is_free')">是否免费</th>
+                                                <th onclick="sort('is_specials')">是否特价</th>
+                                                <th onclick="sort('is_upcoming')">是否即将推出</th>
+                                                <th onclick="sort('is_new')">是否新品</th>
+                                                <th onclick="sort('is_enable')">状态</th>
                                             </tr>
                                         </thead>
                                     
@@ -500,17 +500,18 @@
 		//排序方法
 		function sort(name){
 			//排序规则
-			var rule = "";
-			if(rule==""||rule=="DESC"){
-				rule = "ACS";
-			}else if(rule == "ACS"){
+			var rule = $("#search_form_sort_rule").val();
+			if(rule==''||rule=="ASC"){
 				rule = "DESC";
+			}else if(rule == "DESC"){
+				rule = "ASC";
 			}
 			//将规则和字段传到后台
-			$("#(search_form_sort_name)").val(name);
-			$("#(search_form_sort_rule)").val(rule);
 			
-			$("#(search_form)").submit();
+			$("#search_form_sort_name").val(name);
+			$("#search_form_sort_rule").val(rule);
+			
+			$("#search_form").submit();
 		}
 		</script>
     </body>

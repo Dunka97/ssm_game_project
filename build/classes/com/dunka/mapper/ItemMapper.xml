@@ -8,11 +8,18 @@
 	<select id="selectAll" resultType="ItemInfo">
 		SELECT * 
 		FROM item_info 
-		order by item_release_date desc;
+		order by item_release_date desc
 	</select>
 	<!-- //	根据Vo返回项目
 	List<ItemInfo> selectItemByVo(ItemInfoVo vo); -->
 	<select id="selectItemByVo" parameterType="ItemInfoVo" resultType="ItemInfo">
-		
+		SELECT * 
+		FROM item_info 
+		<choose>
+		<when test="sort_rule!=null and sort_rule!='' ">
+			order by ${sort_name} ${sort_rule}
+		</when>
+		<otherwise>order by item_release_date desc</otherwise>
+		</choose>
 	</select>
   </mapper>
