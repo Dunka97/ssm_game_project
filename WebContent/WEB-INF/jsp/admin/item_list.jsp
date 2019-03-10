@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -97,78 +98,34 @@
                                                 <th>状态</th>
                                             </tr>
                                         </thead>
+                                    
                                         
-                                        <tbody id="item_info_date">
-	                                        	<tr>
-	                                                <td>10001</td>
-	                                                <td>古墓丽影：崛起</td>
-													<td>角色扮演 冒险 动作</td>
-													<td>win mac linux</td>
-	                                                <td>无折扣</td>
-	                                                <td>379</td>
-	                                                <td>cap_image_shadow.png</td>
-	                                                <td>2018-09-13</td>
-	                                                <td>热门</td>
-	                                                <td>畅销</td>
-	                                                <td>否</td>
-	                                                <td>否</td>
-	                                                <td>否</td>
-	                                                <td>新品</td>
-	                                                <td>上架</td>
-	                                                <td>
-	                                                	<a herf="#" id="edit_btn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editLayer" onclick="editItems()">修改</a>
-	                                                	<a herf="#" id="del_btn" class="btn btn-xs btn-danger" onclick="deleteItems()">下架</a>
-	                                                </td>
-	                                           	</tr>
-                                        </tbody>
-                                        
+                                        <c:forEach items="${itemList }" var="item">
                                          <tbody id="item_info_date">
 	                                        	<tr>
-	                                                <td>10001</td>
-	                                                <td>古墓丽影：崛起</td>
-													<td>角色扮演 冒险 动作</td>
-													<td>win mac linux</td>
-	                                                <td>无折扣</td>
-	                                                <td>379</td>
-	                                                <td>cap_image_shadow.png</td>
-	                                                <td>2018-09-13</td>
-	                                                <td>热门</td>
-	                                                <td>畅销</td>
-	                                                <td>否</td>
-	                                                <td>否</td>
-	                                                <td>否</td>
-	                                                <td>新品</td>
-	                                                <td>上架</td>
+	                                                <td>${item.item_id }</td>
+	                                                <td>${item.item_name }</td>
+													<td>${item.item_tagids }</td>
+													<td>${item.item_platform }</td>
+	                                                <td>${item.item_discount==0?'无折扣':item.item_discount }</td>
+	                                                <td>${item.item_original_price }</td>
+	                                                <td>${item.item_cap_image }</td>
+	                                                <td>${item.item_release_date }</td>
+	                                                <td>${item.is_hot==true?'热门':'否'}</td>
+	                                                <td>${item.is_hot_sale==true?'热销':'否' }</td>
+	                                                <td>${item.is_free==true?'免费':'否' }</td>
+	                                                <td>${item.is_specials==true?'特价':'否' }</td>
+	                                                <td>${item.is_upcoming==true?'即将退出':'否' }</td>
+	                                                <td>${item.is_new==true?'新品':'否' }</td>
+	                                                <td>${item.is_enable==true?'上架':'否' }</td>
 	                                                <td>
 	                                                	<a herf="#" id="edit_btn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editLayer" onclick="editItems()">修改</a>
 	                                                	<a herf="#" id="del_btn" class="btn btn-xs btn-danger onclick="deleteItems()">下架</a>
 	                                                </td>
 	                                           	</tr>
                                         </tbody>
-                                        
-                                        <tbody id="item_info_date">
-	                                        	<tr>
-	                                                <td>10001</td>
-	                                                <td>古墓丽影：崛起</td>
-													<td>角色扮演 冒险 动作</td>
-													<td>win mac linux</td>
-	                                                <td>无折扣</td>
-	                                                <td>379</td>
-	                                                <td>cap_image_shadow.png</td>
-	                                                <td>2018-09-13</td>
-	                                                <td>热门</td>
-	                                                <td>畅销</td>
-	                                                <td>否</td>
-	                                                <td>否</td>
-	                                                <td>否</td>
-	                                                <td>新品</td>
-	                                                <td>上架</td>
-	                                                <td>
-	                                                	<a herf="#" id="edit_btn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editLayer" onclick="editItems()">修改</a>
-	                                                	<a herf="#" id="del_btn" class="btn btn-xs btn-danger onclick="deleteItems()">下架</a>
-	                                                </td>
-	                                           	</tr>
-                                        </tbody>
+                                        </c:forEach>
+                 
                                         
                                         <tfoot class="hide-if-no-paging">
                                             <tr>
