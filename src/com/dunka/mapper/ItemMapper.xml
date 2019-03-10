@@ -10,4 +10,9 @@
 		FROM item_info 
 		order by item_release_date desc;
 	</select>
+	<!-- //	根据Vo返回项目
+	List<ItemInfo> selectItemByVo(ItemInfoVo vo); -->
+	<select id="selectItemByVo" parameterType="ItemInfoVo" resultType="ItemInfo">
+		
+	</select>
   </mapper>

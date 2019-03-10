@@ -52,13 +52,18 @@
                     <div class="row">
                         <div class="col-md-12">
                         	<!-- 查询表单 -->
-                        	<form id="search_form" action="#" method="post">
+                        	<form id="search_form" action="${pageContext.request.contextPath }/admin/items" method="post">
 	                        	<!--查询条件部分-->
 	                            <div class="row">
 	                            	<!--按名称查询-->
 	                                <div class="col-md-2">
 	                                    <input style="height:35px" id="search_item_name" type="text" class="form-control input-sm" placeholder="输入名称" name="item_name" value="">
 	                                </div>
+	                                
+	                                <!-- 提交字段 -->
+	                                <input type="hidden" name="search_form_sort_name" id="sort_id" value=""/>
+	                                <!-- 提交规则 -->
+	                                <input type="hidden" name="search_form_sort_rule" id="sort_rule" value=""/>
 	                                
 	                                <!--按类型或者平台选择-->
 	                                <div class="col-md-1">
@@ -80,7 +85,7 @@
                                         <thead>
                                             <tr>
                                             	<!--描述：游戏数据标签-->
-                                                <th>id</th>
+                                                <th onclick="sort('item_id')">id</th>
                                                 <th>游戏名称</th>
                                                 <th>类型</th>
                                                 <th>平台</th>
@@ -479,7 +484,6 @@
             //datepicker
             yukon_datepicker.p_forms_extended();
             init();
-        
         })
        function init(){
 			//获取所有class为item_tag_name 的td
@@ -491,6 +495,22 @@
 			$(".item_platform_name").each(function(){
 				gameTagName($(this).html(),$(this),addr)
 			});
+		}
+		
+		//排序方法
+		function sort(name){
+			//排序规则
+			var rule = "";
+			if(rule==""||rule=="DESC"){
+				rule = "ACS";
+			}else if(rule == "ACS"){
+				rule = "DESC";
+			}
+			//将规则和字段传到后台
+			$("#(search_form_sort_name)").val(name);
+			$("#(search_form_sort_rule)").val(rule);
+			
+			$("#(search_form)").submit();
 		}
 		</script>
     </body>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dunka.bean.ItemInfo;
+import com.dunka.bean.ItemInfoVo;
 import com.dunka.mapper.ItemMapper;
 
 /**
@@ -23,6 +24,11 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<ItemInfo> selectAll() {
 		return itemMapper.selectAll();
+	}
+
+	@Override
+	public List<ItemInfo> selectItemByVo(ItemInfoVo vo) {
+		return itemMapper.selectItemByVo(vo);
 	}
 
 }
