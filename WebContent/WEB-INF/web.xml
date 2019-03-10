@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>ssm_game_project</display-name>
+  
+  <!-- 静态资源放行 在前端控制器前配置-->
+ <servlet-mapping>
+ 	<servlet-name>default</servlet-name>
+ 	<url-pattern>*.css</url-pattern>
+ 	<url-pattern>*.png</url-pattern>
+ 	<url-pattern>*.woff</url-pattern>
+ 	<url-pattern>*.ttf</url-pattern>
+ 	<url-pattern>*.js</url-pattern>
+ </servlet-mapping>
+  
+   <!-- 过滤器 解决表单post提交 中文乱码问题 -->
+  <filter>
+  	<filter-name>encoding</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<!-- 拦截规则  拦截全部 /*-->
+	<filter-name>encoding</filter-name>
+	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 配置监听器 监听其他配置文件 -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:config/applicationContext_*.xml</param-value>
+  </context-param>
+  
+    <!-- 配置springmvc前端控制器 和读取配置文件 -->
+  <servlet>
+  	<servlet-name>springmvc</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<!-- 读取配置文件 -->
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>classpath:config/springmvc.xml</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<!-- 拦截规则 拦截全部 /-->
+  	<servlet-name>springmvc</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
