@@ -8,16 +8,16 @@
         <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
   		 <!-- bootstrap framework -->
-		<link href="admin/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="${pageContext.request.contextPath }/admin/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<!-- main stylesheet -->
-		<link href="admin/css/main.min.css" rel="stylesheet" media="screen" id="mainCss">
+		<link href="${pageContext.request.contextPath }/admin/css/main.min.css" rel="stylesheet" media="screen" id="mainCss">
 		<!-- elegant icons -->
-        <link href="admin/css/style.css" rel="stylesheet" media="screen">
+        <link href="${pageContext.request.contextPath }/admin/css/style.css" rel="stylesheet" media="screen">
         <!-- datepicker -->
-        <link href="admin/css/datepicker3.css" rel="stylesheet" media="screen">
+        <link href="${pageContext.request.contextPath }/admin/css/datepicker3.css" rel="stylesheet" media="screen">
         <!-- jBox -->
-        <link href="admin/css/jbox.css" rel="stylesheet" media="screen">
-        <link href="admin/css/noticeborder.css" rel="stylesheet" media="screen">
+        <link href="${pageContext.request.contextPath }/admin/css/jbox.css" rel="stylesheet" media="screen">
+        <link href="${pageContext.request.contextPath }/admin/css/noticeborder.css" rel="stylesheet" media="screen">
 
     </head>
     <body class="side_menu_active side_menu_expanded">
@@ -28,12 +28,12 @@
                 <div class="container-fluid">
                 	<!--logo-->
                     <div class="brand_section">
-                        <a href="#"><img src="admin/picture/logo01.png" alt="site_logo" width="108" height="40" style="margin-top: 5px"></a>
+                        <a href="#"><img src="${pageContext.request.contextPath }/admin/picture/logo01.png" alt="site_logo" width="108" height="40" style="margin-top: 5px"></a>
                     </div>
                     <div class="header_user_actions dropdown">
                         <div data-toggle="dropdown" class="dropdown-toggle user_dropdown">
                             <div class="user_avatar">
-                                <img src="admin/picture/head01.png" width="38" height="38">
+                                <img src="${pageContext.request.contextPath }/admin/picture/head01.png" width="38" height="38">
                             </div>
                             <span class="caret"></span>
                         </div>
@@ -479,36 +479,36 @@
 		
 		<!-- 引入第三方js文件 -->
         <!-- jQuery -->
-        <script src="admin/js/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/jquery.min.js"></script>
         <!-- jQuery Cookie -->
-        <script src="admin/js/jquerycookie.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/jquerycookie.min.js"></script>
         <!-- Bootstrap Framework -->
-        <script src="admin/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/bootstrap.min.js"></script>
         <!-- retina images -->
-        <script src="admin/js/retina.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/retina.min.js"></script>
         <!-- switchery -->
-        <script src="admin/js/switchery.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/switchery.min.js"></script>
         <!-- typeahead -->
-        <script src="admin/js/typeahead.bundle.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/typeahead.bundle.min.js"></script>
         <!-- fastclick -->
-        <script src="admin/js/fastclick.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/fastclick.min.js"></script>
         <!-- match height -->
-        <script src="admin/js/jquery.matchheight-min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/jquery.matchheight-min.js"></script>
         <!-- scrollbar -->
-        <script src="admin/js/jquery.mcustomscrollbar.concat.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/jquery.mcustomscrollbar.concat.min.js"></script>
 		<!-- moment.js (date library) -->
-        <script src="admin/js/moment-with-langs.min.js"></script>
-        <!-- Yukon Admin functions -->
-        <script src="admin/js/yukon_all.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/moment-with-langs.min.js"></script>
+        <!-- Yukon ${pageContext.request.contextPath }/admin functions -->
+        <script src="${pageContext.request.contextPath }/admin/js/yukon_all.min.js"></script>
 	    <!-- page specific plugins -->
         <!-- footable -->
-        <script src="admin/js/footable.min.js"></script>
-        <script src="admin/js/footable.paginate.min.js"></script>
-        <script src="admin/js/footable.filter.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/footable.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/footable.paginate.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/footable.filter.min.js"></script>
        	<!-- datepicker -->
-        <script src="admin/js/bootstrap-datepicker.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/bootstrap-datepicker.js"></script>
    		<!-- jBox -->
-        <script src="admin/js/jbox.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/js/jbox.min.js"></script>
         
         <!-- js代码 -->
         <script type="text/javascript">
