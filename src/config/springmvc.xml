@@ -6,6 +6,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+	<!-- 读取配置文件 -->
+	<context:property-placeholder location="classpath:config/dictTypeId.properties"/>
 	<!-- 开启注解扫描 -->
 	<context:component-scan base-package="com.dunka.controller"/>
 	

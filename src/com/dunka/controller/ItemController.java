@@ -3,6 +3,7 @@ package com.dunka.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,11 @@ public class ItemController {
 	@Autowired
 	private DictService dictService;
 	
+	@Value("${tagNameId}")
+	private String tagName;
+	@Value("${plantformNameId}")
+	private String plantformName;
+	
 	@RequestMapping("")
 	public String select(Model model,ItemInfoVo vo) {
 //		查询所有游戏项目
@@ -37,12 +43,12 @@ public class ItemController {
 		List<ItemInfo> itemList = itemService.selectItemByVo(vo);
 		
 		//动态加载标签和平台
-		List<SysDict> tagIdsList = dictService.selectDictByTagList("01");
-		List<SysDict> platformList = dictService.selectDictByTagList("02");
+		List<SysDict> tagIdsList = dictService.selectDictByTagList(tagName);
+		List<SysDict> platformList = dictService.selectDictByTagList(plantformName);
 		
 	    System.out.println(itemList);
-	    System.out.println(tagIdsList.get(0));
-	    System.out.println(platformList.get(0));
+//	    System.out.println(tagIdsList);
+//	    System.out.println(platformList);
 	    
 	    model.addAttribute("itemInfoVo", vo);
 	    model.addAttribute("itemList", itemList);
