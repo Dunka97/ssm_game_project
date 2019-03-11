@@ -386,9 +386,9 @@
 								<label for="edit_item_tagids" class="col-sm-2 control-label">标签</label>
 								<div class="col-sm-10">
 									<div class="checkbox">
-											<label><input type="checkbox" name="search_tag" value="">角色扮演</label>&nbsp;&nbsp;
-											<label><input type="checkbox" name="search_tag" value="">冒险</label>&nbsp;&nbsp;
-											<label><input type="checkbox" name="search_tag" value="">动作</label>&nbsp;&nbsp;
+								<c:forEach items="${tagIdsList}" var="dict_name" >
+									<label><input type="checkbox" name="add_tag" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
+								</c:forEach>
                            			</div>
 								</div>
 							</div>
@@ -396,11 +396,9 @@
 							<div class="form-group">
 								<label for="edit_item_platform" class="col-sm-2 control-label">平台</label>
 								<div class="col-sm-10">
-									<div class="checkbox">
-			                               	<label><input type="checkbox" name="search_platform" value="">win</label>&nbsp;&nbsp;
-			                               	<label><input type="checkbox" name="search_platform" value="">mac</label>&nbsp;&nbsp;
-			                               	<label><input type="checkbox" name="search_platform" value="">linux</label>&nbsp;&nbsp;
-                           			</div>
+									<c:forEach items="${platformList}" var="dict_name" >
+									<label><input type="checkbox" name="add_tag" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
+								</c:forEach>
 								</div>
 							</div>
 						</form><!--描述：选择标签或平台的查询条件弹出层 表单 end-->

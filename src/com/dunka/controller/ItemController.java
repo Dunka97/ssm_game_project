@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dunka.bean.ItemInfo;
 import com.dunka.bean.ItemInfoVo;
+import com.dunka.bean.SysDict;
 import com.dunka.service.DictService;
 import com.dunka.service.ItemService;
 
@@ -34,11 +35,19 @@ public class ItemController {
 //	    List<ItemInfo> itemList = itemService.selectAll();
 //		根据Vo返回项目
 		List<ItemInfo> itemList = itemService.selectItemByVo(vo);
-		System.out.println(vo.getSort_name()+" "+vo.getSort_rule());
+		
+		//动态加载标签和平台
+		List<SysDict> tagIdsList = dictService.selectDictByTagList("01");
+		List<SysDict> platformList = dictService.selectDictByTagList("02");
 		
 	    System.out.println(itemList);
+	    System.out.println(tagIdsList.get(0));
+	    System.out.println(platformList.get(0));
+	    
 	    model.addAttribute("itemInfoVo", vo);
 	    model.addAttribute("itemList", itemList);
+	    model.addAttribute("tagIdsList", tagIdsList);
+	    model.addAttribute("platformList", platformList);
 	    
 	    return "admin/item_list";
 		

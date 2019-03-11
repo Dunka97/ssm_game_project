@@ -15,4 +15,11 @@
 		 	#{id}
 		 </foreach>
 	</select>
+	<!-- //根据词典id返回对应的标签或者平台
+	List<SysDict> selectDictByTagList(String idList); -->
+	<select id="selectDictByTagList" parameterType="String" resultType="SysDict">
+	     SELECT dict_item_name 
+	     FROM sys_dict 
+	     where dict_type_id =#{id}
+	</select>
   </mapper>
