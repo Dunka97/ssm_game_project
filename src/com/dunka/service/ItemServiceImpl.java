@@ -60,11 +60,11 @@ public class ItemServiceImpl implements ItemService {
 				}
 				//处理平台
 				if(!vo.getItem_platform().equals("") && isContain) {
-					String[] itemInfoTagids = itemInfo.getItem_platform().split("#");
-					List<String> itemInfoTagList = Arrays.asList(itemInfoTagids);
+					String[] itemInfoPlatform = itemInfo.getItem_platform().split("#");
+					List<String> itemInfoPlatformList = Arrays.asList(itemInfoPlatform);
 					for (String voTag : voPlatform) {
 						//判断是否包含此标签
-						isContain = itemInfoTagList.contains(voTag);
+						isContain = itemInfoPlatformList.contains(voTag);
 						if(!isContain) break;
 					}
 				}

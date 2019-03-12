@@ -78,7 +78,7 @@
 	                                    <!--查询按钮 - 提交-->
 	                                 	<button id="search_btn" type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;
 	                                 	<!-- 重置查询条件 并提交 -->
-	                                 	<button id="reset_search_btn" type="button" class="btn btn-primary">重置</button>
+	                                 	<button id="reset_search_btn" type="button" onclick="resetSearch()" class="btn btn-primary">重置</button>
 	                                </div>
 	                            </div> 
                             </form><!-- 查询表单 end  -->
@@ -525,6 +525,15 @@
 			$("#search_form_item_tagids").val($("#search_item_tagids").val());
 			$("#search_form_item_platform").val($("#search_item_platform").val());
 			$("#search_cancel_btn").click();
+		}
+		//重置查询条件
+		function resetSearch(){
+			$("#search_form_item_tagids").val("");
+			$("#search_form_item_platform").val("");
+			$("#search_form_sort_name").val("");
+			$("#search_form_sort_rule").val("");
+			
+			$("#search_form").submit();
 		}
 		</script>
     </body>

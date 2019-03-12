@@ -15,6 +15,11 @@
 	<select id="selectItemByVo" parameterType="ItemInfoVo" resultType="ItemInfo">
 		SELECT * 
 		FROM item_info 
+		<where>
+			<if test="item_name!=null and item_name!='' ">
+				and item_name like "%"#{item_name}"%"
+			</if>
+		</where>
 		<choose>
 		<when test="sort_rule!=null and sort_rule!='' ">
 			order by ${sort_name} ${sort_rule}
