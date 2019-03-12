@@ -60,6 +60,10 @@
 	                                    <input style="height:35px" id="search_item_name" type="text" class="form-control input-sm" placeholder="输入名称" name="item_name" value="">
 	                                </div>
 	                                
+	                                <!-- 标签id -->
+	                                 <input type="hidden" name="item_tagids" id="search_form_item_tagids" value=""/>
+	                                <!-- 平台id -->
+	                                 <input type="hidden" name="item_platform" id="search_form_item_platform" value=""/>
 	                                <!-- 提交字段 -->
 	                                <input type="hidden" name="sort_name" id="search_form_sort_name" value=""/>
 	                                <!-- 提交规则 -->
@@ -386,9 +390,10 @@
 								<label for="edit_item_tagids" class="col-sm-2 control-label">标签</label>
 								<div class="col-sm-10">
 									<div class="checkbox">
-								<c:forEach items="${tagIdsList}" var="dict_name" >
-									<label><input type="checkbox" name="add_tag" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
-								</c:forEach>
+										<input type="hidden" id="search_item_tagids" value="">
+									<c:forEach items="${tagidsList }" var="dict_tagids">
+										<label><input type="checkbox" name="search_tagids" value="${dict_tagids.dict_id }">${dict_tagids.dict_item_name }</label>&nbsp;&nbsp;
+									</c:forEach>
                            			</div>
 								</div>
 							</div>
@@ -396,8 +401,9 @@
 							<div class="form-group">
 								<label for="edit_item_platform" class="col-sm-2 control-label">平台</label>
 								<div class="col-sm-10">
+								<input type="hidden" id="search_item_platform" value="">
 									<c:forEach items="${platformList}" var="dict_name" >
-									<label><input type="checkbox" name="add_tag" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
+									<label><input type="checkbox" name="search_platform" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
 								</c:forEach>
 								</div>
 							</div>
@@ -405,7 +411,7 @@
                     </div>
                         <div class="modal-footer">
                             <button id="search_cancel_btn" type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="">确认选择</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="setTagidsAndPlatform()">确认选择</button>
                         </div>
                     </div>
                 </div>
@@ -493,6 +499,9 @@
 			$(".item_platform_name").each(function(){
 				gameTagName($(this).html(),$(this),addr)
 			});
+			
+			joinTagids("search_tagids",$("#search_item_tagids"));
+			joinTagids("search_platform",$("#search_item_platform"));
 		}
 		
 		//排序方法
@@ -510,6 +519,12 @@
 			$("#search_form_sort_rule").val(rule);
 			
 			$("#search_form").submit();
+		}
+		//弹出层拼接好的id 并将隐藏域中的值传递到对应的表单中
+		function setTagidsAndPlatform(){
+			$("#search_form_item_tagids").val($("#search_item_tagids").val());
+			$("#search_form_item_platform").val($("#search_item_platform").val());
+			$("#search_cancel_btn").click();
 		}
 		</script>
     </body>

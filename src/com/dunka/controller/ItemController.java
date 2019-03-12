@@ -30,9 +30,9 @@ public class ItemController {
 	@Autowired
 	private DictService dictService;
 	
-	@Value("${tagNameId}")
+	@Value("${dict.tagids}")
 	private String tagName;
-	@Value("${plantformNameId}")
+	@Value("${dict.platform}")
 	private String plantformName;
 	
 	@RequestMapping("")
@@ -52,7 +52,7 @@ public class ItemController {
 	    
 	    model.addAttribute("itemInfoVo", vo);
 	    model.addAttribute("itemList", itemList);
-	    model.addAttribute("tagIdsList", tagIdsList);
+	    model.addAttribute("tagidsList", tagIdsList);
 	    model.addAttribute("platformList", platformList);
 	    
 	    return "admin/item_list";

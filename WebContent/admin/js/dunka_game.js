@@ -23,3 +23,29 @@ function gameTagName(values,divObj,addr){
 			
 	});
 }
+
+//拼接checkbox中的多选后的id,用#号分割
+function joinTagids(name,divObj){
+	console.log(name);
+	console.log(divObj);
+	//拼接标签id
+	//console.log()
+	$("input[name="+name+"]").click(function(){
+		//创建一个数组
+		var arr=[];
+		$("input[name="+name+"]").each(function(){
+			//拼接id字符串
+			if(this.checked){
+				arr.push(this.value);
+				//console.log(arr);
+			}else{
+				var index = arr.indexOf(this.value);
+				if(index!=-1){
+					arr[index] ="";
+				}
+			}
+		});
+		//遍历完成1，2，3 1#2#3
+		$(divObj).val(arr.join("#"));
+	});
+}
