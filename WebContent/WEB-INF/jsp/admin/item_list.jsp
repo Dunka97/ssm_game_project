@@ -183,10 +183,11 @@
 								<label for="add_item_tagids" class="col-sm-2 control-label">标签</label>
 								<div class="col-sm-10">
 									<div>
-										<label><input type="checkbox" name="add_tag" value="">角色扮演</label>&nbsp;&nbsp;
-										<label><input type="checkbox" name="add_tag" value="">动作</label>&nbsp;&nbsp;
-										<label><input type="checkbox" name="add_tag" value="">冒险</label>&nbsp;&nbsp;
-                           			</div>
+										<input type="hidden" id="add_item_tagids" value="">
+										<c:forEach items="${tagidsList }" var="dict_tagids">
+											<label><input type="checkbox" name="add_tagids" value="${dict_tagids.dict_id }">${dict_tagids.dict_item_name }</label>&nbsp;&nbsp;
+										</c:forEach>
+									</div>
 								</div>
 							</div>
 							
@@ -195,9 +196,10 @@
 								<label for="add_item_platform" class="col-sm-2 control-label">平台</label>
 								<div class="col-sm-10">
 									<div>
-			                            <label><input type="checkbox" name="add_tag" value="">win</label>&nbsp;&nbsp;
-										<label><input type="checkbox" name="add_tag" value="">mac</label>&nbsp;&nbsp;
-										<label><input type="checkbox" name="add_tag" value="">linux</label>&nbsp;&nbsp;
+			                            <input type="hidden" id="add_item_platform" value="">
+										<c:forEach items="${platformList}" var="dict_name" >
+										<label><input type="checkbox" name="add_platform" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
+										</c:forEach>
                            			</div>
 								</div>
 							</div>
@@ -243,9 +245,9 @@
 								<div class="col-sm-10">
 									<div>
 										<!-- 读取数据词典中的 标志位 -->
-										<label><input type="checkbox" class="add_item_flag" name="" value="">新品</label>
-										<label><input type="checkbox" class="add_item_flag" name="" value="">优惠</label>
-										<label><input type="checkbox" class="add_item_flag" name="" value="">免费游戏</label>
+										 <c:forEach items="${flagList }" var="flag">
+										 <label><input type="checkbox" class="add_item_flag" name="${flag.dict_field_name }" value="">${flag.dict_item_name }</label>
+										 </c:forEach>
                            			</div>
 								</div>
 							</div>
@@ -499,9 +501,24 @@
 			$(".item_platform_name").each(function(){
 				gameTagName($(this).html(),$(this),addr)
 			});
-			
+			//处理查询
 			joinTagids("search_tagids",$("#search_item_tagids"));
 			joinTagids("search_platform",$("#search_item_platform"));
+			
+			//处理添加
+			joinTagids("add_tagids",$("#add_item_tagids"));
+			joinTagids("add_platform",$("#add_item_platform"));
+			
+			//add flag 通过类选择器，并绑定为其赋值
+			$(".add_item_flag").each(function(){
+				//绑定点击事件
+				$(this).click(function(){
+					if(this.checked)
+						$(this).val(1);
+					else
+						$(this).val(0);
+				});
+			});
 		}
 		
 		//排序方法

@@ -34,6 +34,8 @@ public class ItemController {
 	private String tagName;
 	@Value("${dict.platform}")
 	private String plantformName;
+	@Value("${dict.flag}")
+	private String flag;
 	
 	@RequestMapping("")
 	public String select(Model model,ItemInfoVo vo) {
@@ -45,6 +47,7 @@ public class ItemController {
 		//动态加载标签和平台
 		List<SysDict> tagIdsList = dictService.selectDictByTagList(tagName);
 		List<SysDict> platformList = dictService.selectDictByTagList(plantformName);
+		List<SysDict> flagList = dictService.selectDictByTagList(flag);
 		
 	    System.out.println(itemList);
 //	    System.out.println(tagIdsList);
@@ -54,6 +57,7 @@ public class ItemController {
 	    model.addAttribute("itemList", itemList);
 	    model.addAttribute("tagidsList", tagIdsList);
 	    model.addAttribute("platformList", platformList);
+	    model.addAttribute("flagList", flagList);
 	    
 	    return "admin/item_list";
 		
