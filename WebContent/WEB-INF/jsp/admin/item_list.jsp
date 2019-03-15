@@ -184,7 +184,7 @@
 								<label for="add_item_tagids" class="col-sm-2 control-label">标签</label>
 								<div class="col-sm-10">
 									<div>
-										<input type="hidden" id="add_item_tagids" value="">
+										<input type="hidden" id="add_item_tagids"  name="item_tagids" value="">
 										<c:forEach items="${tagidsList }" var="dict_tagids">
 											<label><input type="checkbox" name="add_tagids" value="${dict_tagids.dict_id }">${dict_tagids.dict_item_name }</label>&nbsp;&nbsp;
 										</c:forEach>
@@ -197,7 +197,7 @@
 								<label for="add_item_platform" class="col-sm-2 control-label">平台</label>
 								<div class="col-sm-10">
 									<div>
-			                            <input type="hidden" id="add_item_platform" value="">
+			                            <input type="hidden" id="add_item_platform"  name="item_platform" value="">
 										<c:forEach items="${platformList}" var="dict_name" >
 										<label><input type="checkbox" name="add_platform" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
 										</c:forEach>
@@ -562,8 +562,9 @@
 				type:"POST",
 				url: "${pageContext.request.contextPath }/admin/items/save",
 				data:$("#add_items_form").serialize(),
-				success:function(){
+				success:function(data){
 					alert("游戏添加成功");
+					console.log(data);
 					window.location.reload();
 				}
 			});

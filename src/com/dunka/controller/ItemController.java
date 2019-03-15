@@ -1,5 +1,6 @@
 package com.dunka.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.dunka.bean.ItemInfoVo;
 import com.dunka.bean.SysDict;
 import com.dunka.service.DictService;
 import com.dunka.service.ItemService;
+import com.dunka.util.GameUtil;
 
 /**
  * 
@@ -75,8 +77,14 @@ public class ItemController {
 	//添加游戏
 	@RequestMapping("/save")
 	@ResponseBody
-	public String save(ItemInfo itemInfo) {
+	public String save(ItemInfo itemInfo) throws ParseException {
 		System.out.println(itemInfo);
+		
+		String date = itemInfo.getItem_release_date();
+		
+		String newDate = GameUtil.dateCovert(date);
+		
+		itemInfo.setItem_release_date(newDate);
 		
 		itemService.save(itemInfo);
 		
