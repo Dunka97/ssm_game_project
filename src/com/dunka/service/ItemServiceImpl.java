@@ -77,4 +77,9 @@ public class ItemServiceImpl implements ItemService {
 		}
 	}
 
+	@Override
+	public void save(ItemInfo itemInfo) {
+		itemMapper.save(itemInfo);
+	}
+    
 }

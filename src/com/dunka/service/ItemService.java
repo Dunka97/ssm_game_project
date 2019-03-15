@@ -12,6 +12,8 @@ public interface ItemService {
 	List<ItemInfo> selectAll();
 //	根据Vo返回项目
 	List<ItemInfo> selectItemByVo(ItemInfoVo vo);
+//添加游戏
+	void save(ItemInfo itemInfo);
 	
 
 }

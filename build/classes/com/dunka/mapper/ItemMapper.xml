@@ -27,4 +27,27 @@
 		<otherwise>order by item_release_date desc</otherwise>
 		</choose>
 	</select>
+	
+<!-- 	//添加游戏
+	void save(ItemInfo itemInfo); -->
+	<insert id="save" parameterType="ItemInfo">
+		insert into item_info
+		values(
+		#{item_id},
+		#{item_name},
+		#{item_tagids},
+		#{item_platform},
+		#{item_discount},
+		#{item_original_price},
+		#{item_cap_image},
+		#{item_release_date},
+		#{is_hot},
+		#{is_hot_sale},
+		#{is_free},
+		#{is_specials},
+		#{is_upcoming},
+		#{is_new},
+		#{is_enable}
+		)
+	</insert>
   </mapper>

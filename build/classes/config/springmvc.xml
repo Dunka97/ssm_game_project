@@ -5,18 +5,20 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-
-	<!-- 读取配置文件 -->
+		<!-- 读取配置文件 -->
 	<context:property-placeholder location="classpath:config/dictTypeId.properties"/>
 	<!-- 开启注解扫描 -->
 	<context:component-scan base-package="com.dunka.controller"/>
 	
 	<!-- 开启注解驱动 -->
 	<mvc:annotation-driven/>
+	<!-- 默认js页面第三控件的使用 -->
+	<mvc:default-servlet-handler/>
+	
 	
 	<!-- 配置视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>
-	</bean>
+	</bean>	
 </beans>

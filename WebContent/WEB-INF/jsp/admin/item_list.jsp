@@ -19,7 +19,8 @@
         <!-- jBox -->
         <link href="${pageContext.request.contextPath }/admin/css/jbox.css" rel="stylesheet" media="screen">
         <link href="${pageContext.request.contextPath }/admin/css/noticeborder.css" rel="stylesheet" media="screen">
-
+        
+       
     </head>
     <body class="side_menu_active side_menu_expanded">
         <div id="page_wrapper">
@@ -445,7 +446,7 @@
             </nav><!-- main menu 左侧主菜单按钮 end-->
         </div>
 		
-		<!-- 引入第三方js文件 -->
+		 <!-- 引入第三方js文件 -->
         <!-- jQuery -->
         <script src="${pageContext.request.contextPath }/admin/js/jquery.min.js"></script>
         <!-- jQuery Cookie -->
@@ -479,9 +480,12 @@
         <script src="${pageContext.request.contextPath }/admin/js/jbox.min.js"></script>
         <!-- 自定义js-->
         <script src="${pageContext.request.contextPath }/admin/js/dunka_game.js"></script>
+		
         
         <!-- js代码 -->
         <script type="text/javascript">
+
+        
 		//在页面加载完毕后执行
         $(function() {
         	//加载第三方组件
@@ -551,6 +555,18 @@
 			$("#search_form_sort_rule").val("");
 			
 			$("#search_form").submit();
+		}
+		//添加游戏
+		function addItem(){
+			$.ajax({
+				type:"POST",
+				url: "${pageContext.request.contextPath }/admin/items/save",
+				data:$("#add_items_form").serialize(),
+				success:function(){
+					alert("游戏添加成功");
+					window.location.reload();
+				}
+			});
 		}
 		</script>
     </body>

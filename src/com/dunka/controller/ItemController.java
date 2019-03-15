@@ -19,8 +19,8 @@ import com.dunka.service.ItemService;
 /**
  * 
  * @author Dunka
- * @Time   2019年3月10日
- * @Todo   后台游戏管理相关Controller
+ * @Time   2019锟斤拷3锟斤拷10锟斤拷
+ * @Todo   锟斤拷台锟斤拷戏锟斤拷锟斤拷锟斤拷锟紺ontroller
  */
 @Controller
 @RequestMapping("/admin/items")
@@ -39,12 +39,14 @@ public class ItemController {
 	
 	@RequestMapping("")
 	public String select(Model model,ItemInfoVo vo) {
-//		查询所有游戏项目
+//		锟斤拷询锟斤拷锟斤拷锟斤拷戏锟斤拷目
 //	    List<ItemInfo> itemList = itemService.selectAll();
-//		根据Vo返回项目
+//		锟斤拷锟斤拷Vo锟斤拷锟斤拷锟斤拷目
 		List<ItemInfo> itemList = itemService.selectItemByVo(vo);
 		
-		//动态加载标签和平台
+		System.out.println("Item_name:"+vo.getItem_name());
+		
+		//锟斤拷态锟斤拷锟截憋拷签锟斤拷平台
 		List<SysDict> tagIdsList = dictService.selectDictByTagList(tagName);
 		List<SysDict> platformList = dictService.selectDictByTagList(plantformName);
 		List<SysDict> flagList = dictService.selectDictByTagList(flag);
@@ -63,10 +65,23 @@ public class ItemController {
 		
 	}
 	
-	//根据词典id查询对应的dict_tag_name
+	//锟斤拷锟捷词碉拷id锟斤拷询锟斤拷应锟斤拷dict_tag_name
 	@RequestMapping("/AdminTags")
 	@ResponseBody
 	public List<String> tagNames(@RequestBody List<String> idList){
 		return dictService.selectTagNames(idList);
 	}
+	
+	//娣诲姞娓告垙
+	@RequestMapping("/save")
+	@ResponseBody
+	public String save(ItemInfo itemInfo) {
+		System.out.println(itemInfo);
+		
+		itemService.save(itemInfo);
+		
+		return "OK";
+	}
+	
+	
 }
