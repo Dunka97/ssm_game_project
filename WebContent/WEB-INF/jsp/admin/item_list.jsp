@@ -162,7 +162,8 @@
                         </div>
                    <div class="modal-body">
                         <!--描述：添加游戏弹出层表单-->
-	                    <form class="form-horizontal" id="add_items_form">
+	                    <form class="form-horizontal" id="add_items_form" enctype="multipart/form-data">
+	                    
 	                    	<!-- item_id -->
 							<div class="form-group">
 								<label for="add_item_id" class="col-sm-2 control-label">id</label>
@@ -225,7 +226,7 @@
                             <div class="form-group">
 								<label for="add_item_cap_image" class="col-sm-2 control-label">游戏封面</label>
 								<div class="col-sm-10">
-									<input type="file" class="form-control" id="add_item_cap_image" name="upload_image">
+									<input type="file" class="form-control" id="add_item_cap_image" name="image">
 								</div> 
 							</div>
 							
@@ -561,10 +562,14 @@
 			$.ajax({
 				type:"POST",
 				url: "${pageContext.request.contextPath }/admin/items/save",
-				data:$("#add_items_form").serialize(),
-				success:function(data){
-					alert("游戏添加成功");
-					console.log(data);
+				//$("#add_items_form").serialize(),序列化不支持文件上传
+				data:new FormData($("#add_items_form")[0]),
+				cache:false,
+				contentType:false,
+				processData:false,
+				success:function(){
+					alert("游戏添加成功!");
+					console.log(new FormData($("#add_items_form")[0]));
 					window.location.reload();
 				}
 			});

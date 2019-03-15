@@ -12,8 +12,9 @@
 	
 	<!-- 开启注解驱动 -->
 	<mvc:annotation-driven/>
-	<!-- 默认js页面第三控件的使用 -->
-	<mvc:default-servlet-handler/>
+	
+<!-- 	 默认js页面第三控件的使用 
+	<mvc:default-servlet-handler/> -->
 	
 	
 	<!-- 配置视图解析器 -->
@@ -21,4 +22,8 @@
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>	
+	
+	<!-- 图片上传 -->
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
 </beans>
