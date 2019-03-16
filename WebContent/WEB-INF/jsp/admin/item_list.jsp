@@ -579,7 +579,11 @@
 		//修改游戏
 		//打开编辑窗口，并回显数据
 		function editItems(id){
+			//清除编辑表单的数据
+			$("#edit_items_form")[0].reset();
 			$.ajax({
+				
+				
 				type:"POST",
 				url:"${pageContext.request.contextPath }/admin/items/edit",
 				data:{"id":id},
@@ -589,6 +593,18 @@
 					$("#edit_item_name").val(data.item_name);
 					$("#edit_item_discount").val(data.item_discount);
 					$("#edit_item_original_price").val(data.item_original_price);
+					//处理checkbox状态回显
+					var allDataIds = $("input[name=edit_tagids]");
+					var itemIds = data.item_tagids.split("#");
+					
+					for(var i = 0; i<allDataIds.length; i++){
+						for(var j = 0; j<itemIds.length; j++){
+							if(allDataIds[i].value == itemIds[j]){
+								allDataIds[i].checked = true;
+								break;
+							}
+						}
+					}
 					
 					if(data.item_cap_image != null)
 					$("#edit_item_cap_image_src").attr("src","/images/"+data.item_cap_image);
