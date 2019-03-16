@@ -129,7 +129,7 @@
 	                                                <td>${item.is_new==true?'新品':'否' }</td>
 	                                                <td>${item.is_enable==true?'上架':'否' }</td>
 	                                                <td>
-	                                                	<a herf="#" id="edit_btn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editLayer" onclick="editItems()">修改</a>
+	                                                	<a herf="#" id="edit_btn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editLayer" onclick="editItems(${item.item_id})">修改</a>
 	                                                	<a herf="#" id="del_btn" class="btn btn-xs btn-danger onclick="deleteItems()">下架</a>
 	                                                </td>
 	                                           	</tr>
@@ -291,9 +291,10 @@
 								<label for="edit_item_tagids" class="col-sm-2 control-label">标签</label>
 								<div class="col-sm-10">
 									<div>
-										<label><input type="checkbox" name="edit_tag" value="">角色扮演</label>&nbsp;&nbsp;
-										<label><input type="checkbox" name="edit_tag" value="">冒险</label>&nbsp;&nbsp;
-										<label><input type="checkbox" name="edit_tag" value="">动作</label>&nbsp;&nbsp;
+										<input type="hidden" id="edit_item_tagids"  name="item_tagids" value="">
+										<c:forEach items="${tagidsList }" var="dict_tagids">
+											<label><input type="checkbox" name="edit_tagids" value="${dict_tagids.dict_id }">${dict_tagids.dict_item_name }</label>&nbsp;&nbsp;
+										</c:forEach>
                            			</div>
 								</div>
 							</div>
@@ -303,9 +304,10 @@
 								<label for="edit_item_platform" class="col-sm-2 control-label">平台</label>
 								<div class="col-sm-10">
 									<div>
-			                            <label><input type="checkbox" name="edit_platform" value="">win</label>&nbsp;&nbsp;
-			                            <label><input type="checkbox" name="edit_platform" value="">mac</label>&nbsp;&nbsp;
-			                            <label><input type="checkbox" name="edit_platform" value="">linux</label>&nbsp;&nbsp;
+			                          <input type="hidden" id="edit_item_platform"  name="item_platform" value="">
+										<c:forEach items="${platformList}" var="dict_name" >
+										<label><input type="checkbox" name="edit_platform" value="${dict_name.dict_id}">${dict_name.dict_item_name}</label>&nbsp;&nbsp;
+										</c:forEach>
                            			</div>
 								</div>
 							</div>
@@ -358,10 +360,10 @@
 								<label for="edit_other" class="col-sm-2 control-label"></label>
 								<div class="col-sm-10">
 									<div>
-									<!-- 所有游戏标志位 -->
-										    <label><input type="checkbox" class="edit_item_flag" name="" value="">新品</label>
-										    <label><input type="checkbox" class="edit_item_flag" name="" value="">优惠</label>
-										    <label><input type="checkbox" class="edit_item_flag" name="" value="">免费游戏</label>
+									<!-- 读取数据词典中的 标志位 -->
+										 <c:forEach items="${flagList }" var="flag">
+										 <label><input type="checkbox" class="edit_item_flag" name="${flag.dict_field_name }" value="">${flag.dict_item_name }</label>
+										 </c:forEach>
                            			</div>
 								</div>
 							</div>
@@ -571,6 +573,23 @@
 					alert("游戏添加成功!");
 					console.log(new FormData($("#add_items_form")[0]));
 					window.location.reload();
+				}
+			});
+		}
+		//修改游戏
+		//打开编辑窗口，并回显数据
+		function editItems(id){
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath }/admin/items/edit",
+				data:{"id":id},
+				dataType:"json",
+				success:function(data){
+					$("#edit_item_id").val(data.item_id);
+					$("#edit_item_name").val(data.item_name);
+					$("#edit_item_discount").val(data.item_discount);
+					$("#edit_item_original_price").val(data.item_original_price);
+					$("#edit_item_release_date").val(data.item_release_date);
 				}
 			});
 		}

@@ -7,13 +7,16 @@ import com.dunka.bean.ItemInfoVo;
 
 public interface ItemMapper {
 
-	//╡Ия╞кЫспсно╥оНд©
+	//О©╫О©╫я╞О©╫О©╫О©╫О©╫О©╫О©╫о╥О©╫О©╫д©
 	List<ItemInfo> selectAll();
 
-	//	╦Ы╬щVo╥╣╩ьоНд©
+	//	О©╫О©╫О©╫О©╫VoО©╫О©╫О©╫О©╫О©╫О©╫д©
 	List<ItemInfo> selectItemByVo(ItemInfoVo vo);
 
-	//лМ╪ссно╥
+	//О©╫О©╫О©╫О©╫О©╫о╥
 	void save(ItemInfo itemInfo);
+
+	//Ф═╧Ф█╝IDХ©■Е⌡·ItemInfoЕ╞╧Х╠║
+	ItemInfo selectItemInfoById(String id);
 
 }

@@ -50,4 +50,9 @@
 		#{is_enable}
 		)
 	</insert>
+	<!--//根据ID返回ItemInfo对象
+	ItemInfo selectItemInfoById(String id);  -->
+	<select id="selectItemInfoById" parameterType="String" resultType="ItemInfo">
+		select * from item_info where item_id = #{id}
+	</select>
   </mapper>

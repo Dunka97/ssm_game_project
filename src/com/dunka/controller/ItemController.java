@@ -105,6 +105,11 @@ public class ItemController {
 		
 		return "OK";
 	}
-	
+	//打开修改编辑窗口并回显数据
+	@RequestMapping("/edit")
+	@ResponseBody
+	public ItemInfo save(String id) {
+		return itemService.selectItemInfoById(id);
+	}
 	
 }

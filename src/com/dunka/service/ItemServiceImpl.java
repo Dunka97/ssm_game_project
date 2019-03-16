@@ -15,8 +15,8 @@ import com.mysql.fabric.xmlrpc.base.Array;
 /**
  * 
  * @author Dunka
- * @Time   2019Äê3ÔÂ10ÈÕ
- * @Todo	ÓÎÏ·ServiceÊµÏÖÀà
+ * @Time   2019ï¿½ï¿½3ï¿½ï¿½10ï¿½ï¿½
+ * @Todo	ï¿½ï¿½Ï·ServiceÊµï¿½ï¿½ï¿½ï¿½
  */
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -31,39 +31,39 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public List<ItemInfo> selectItemByVo(ItemInfoVo vo) {
-		//×î³õÃ»ÓÐ¾­¹ý±êÇ©ºÍÆ½Ì¨Ñ¡ÔñµÄ
+		//ï¿½ï¿½ï¿½Ã»ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½Æ½Ì¨Ñ¡ï¿½ï¿½ï¿½
 		List<ItemInfo> queryList = itemMapper.selectItemByVo(vo);
 		if(vo == null)
 		return queryList;
-		//ÅÐ¶Ï±êÇ©ºÍÆ½Ì¨×Ö·û´®ÊÇ·ñÎª¿Õ
+		//ï¿½Ð¶Ï±ï¿½Ç©ï¿½ï¿½Æ½Ì¨ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½ï¿½
 		if(vo.getItem_tagids()!=null && vo.getItem_tagids()!=""||
 				vo.getItem_platform()!=null &&vo.getItem_platform()!="") {
-			//½«Âú×ãÌõ¼þµÄ½á¹û·ÅÈë¹ýÂËµÄÁÐ±íÖÐ²¢·µ»Ø
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½Ð±ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½
 			List<ItemInfo> filterList = new ArrayList<ItemInfo>();
 			
-			//»ñÈ¡²éÑ¯Ìõ¼þµÄid Êý×é
+			//ï¿½ï¿½È¡ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id ï¿½ï¿½ï¿½ï¿½
 			String[] voTagids = vo.getItem_tagids().split("#");
 			String[] voPlatform = vo.getItem_platform().split("#");
 			
-			//±éÀú²éÑ¯Î´É¸Ñ¡µÄÁÐ±í
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯Î´É¸Ñ¡ï¿½ï¿½ï¿½Ð±ï¿½
 			for (ItemInfo itemInfo : queryList) {
-				//Èç¹ûÕâ¸ö±êÖ¾Î»±éÀúÍê Ö¤Ã÷Âú×ãËùÁÐ¾ÙµÄËùÓÐÌõ¼þ ¼ÓÈëfilterList
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¾Ùµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½filterList
 				boolean isContain = true;
 				if(!vo.getItem_tagids().equals("")) {
 					String[] itemInfoTagids = itemInfo.getItem_tagids().split("#");
 					List<String> itemInfoTagList = Arrays.asList(itemInfoTagids);
 					for (String voTag : voTagids) {
-						//ÅÐ¶ÏÊÇ·ñ°üº¬´Ë±êÇ©
+						//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½Ç©
 						isContain = itemInfoTagList.contains(voTag);
 						if(!isContain) break;
 					}
 				}
-				//´¦ÀíÆ½Ì¨
+				//ï¿½ï¿½ï¿½ï¿½Æ½Ì¨
 				if(!vo.getItem_platform().equals("") && isContain) {
 					String[] itemInfoPlatform = itemInfo.getItem_platform().split("#");
 					List<String> itemInfoPlatformList = Arrays.asList(itemInfoPlatform);
 					for (String voTag : voPlatform) {
-						//ÅÐ¶ÏÊÇ·ñ°üº¬´Ë±êÇ©
+						//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½Ç©
 						isContain = itemInfoPlatformList.contains(voTag);
 						if(!isContain) break;
 					}
@@ -80,6 +80,11 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void save(ItemInfo itemInfo) {
 		itemMapper.save(itemInfo);
+	}
+
+	@Override
+	public ItemInfo selectItemInfoById(String id) {
+		return itemMapper.selectItemInfoById(id);
 	}
     
 }
