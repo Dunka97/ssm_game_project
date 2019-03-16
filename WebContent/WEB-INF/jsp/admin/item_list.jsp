@@ -589,6 +589,10 @@
 					$("#edit_item_name").val(data.item_name);
 					$("#edit_item_discount").val(data.item_discount);
 					$("#edit_item_original_price").val(data.item_original_price);
+					
+					if(data.item_cap_image != null)
+					$("#edit_item_cap_image_src").attr("src","/images/"+data.item_cap_image);
+					
 					$("#edit_item_release_date").val(data.item_release_date);
 				}
 			});
