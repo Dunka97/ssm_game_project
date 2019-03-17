@@ -18,7 +18,21 @@ function setTagidsAndPlatformEcho(allData, itemData){
 		}
 	}
 }
-
+yukon_datepicker = {
+    p_forms_extended: function (name) {
+        $.isFunction($.fn.datepicker) && ($.fn.datepicker.DPGlobal.template = $.fn.datepicker.DPGlobal.template.replace(/\&laquo;/g, '<i class="arrow_carrot-left"></i>').replace(/\&raquo;/g, '<i class="arrow_carrot-right"></i>'));
+        $("#dp_basic").length && $("#dp_basic").datepicker({
+            autoclose: !0
+        });
+        $("#dp_component"+name).length && $("#dp_component"+name).datepicker({
+            autoclose: !0
+        });
+        $("#dp_range").length && $("#dp_range").datepicker({
+            autoclose: !0
+        });
+        $("#dp_inline").length && $("#dp_inline").datepicker()
+    }
+};
 
 
 

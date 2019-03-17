@@ -91,5 +91,10 @@ public class ItemServiceImpl implements ItemService {
 	public void update(ItemInfo itemInfo) {
 		itemMapper.update(itemInfo);
 	}
+
+	@Override
+	public void deleteByLogic(String id, Boolean enable) {
+		itemMapper.deleteByLogic(id,enable);
+	}
     
 }

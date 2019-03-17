@@ -2,6 +2,8 @@ package com.dunka.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.dunka.bean.ItemInfo;
 import com.dunka.bean.ItemInfoVo;
 
@@ -20,5 +22,8 @@ public interface ItemMapper {
 	ItemInfo selectItemInfoById(String id);
 	//更新游戏信息
 	void update(ItemInfo itemInfo);
+
+	//逻辑删除
+	void deleteByLogic(@Param("id")String id, @Param("enable")Boolean enable);
 
 }

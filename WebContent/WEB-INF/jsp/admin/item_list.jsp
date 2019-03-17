@@ -127,10 +127,10 @@
 	                                                <td>${item.is_specials==true?'特价':'否' }</td>
 	                                                <td>${item.is_upcoming==true?'即将退出':'否' }</td>
 	                                                <td>${item.is_new==true?'新品':'否' }</td>
-	                                                <td>${item.is_enable==true?'上架':'否' }</td>
+	                                                <td>${item.is_enable==true?'上架':'已下架' }</td>
 	                                                <td>
 	                                                	<a herf="#" id="edit_btn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#editLayer" onclick="editItems(${item.item_id})">修改</a>
-	                                                	<a herf="#" id="del_btn" class="btn btn-xs btn-danger onclick="deleteItems()">下架</a>
+	                                                	<a herf="#" id="del_btn" class="btn btn-xs ${item.is_enable==true?'btn-warning':'btn-danger'}" onclick="deleteItems(${item.item_id}, ${item.is_enable})">${item.is_enable==true?'下架':'上架' }</a>
 	                                                </td>
 	                                           	</tr>
                                         </tbody>
@@ -646,6 +646,17 @@
 					window.location.reload();
 				}
 			});
+		}
+		//逻辑删除
+		function deleteItems(id,enable){
+			var isEnable = !Boolean(enable);
+			$.post(
+				"${pageContext.request.contextPath }/admin/items/delete",
+				{"id":id,"enable":isEnable},
+				function(){
+					window.location.reload();
+				}
+			);
 		}
 		</script>
     </body>

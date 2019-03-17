@@ -82,6 +82,13 @@
 		</set>
 		where item_id = #{item_id}
 	</update>
-	
-	
+	<!-- 	//逻辑删除
+	void deleteByLogic(@Param("id")String id, @Param("enable")String enable); -->
+	<update id="deleteByLogic">
+		update item_info
+		<set>
+			is_enable = #{enable}
+		</set>
+		where item_id = #{id}
+	</update>
   </mapper>

@@ -19,6 +19,9 @@ public interface ItemService {
 	ItemInfo selectItemInfoById(String id);
 	//更新游戏信息
 	void update(ItemInfo itemInfo);
+	//逻辑删除
+	void deleteByLogic(String id, Boolean enable);
+
 	
 
 }

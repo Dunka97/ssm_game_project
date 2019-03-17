@@ -144,4 +144,13 @@ public class ItemController {
 		
 		return "OK";
 	}
+	//逻辑删除 下架游戏
+	@RequestMapping("/delete")
+	@ResponseBody
+	public String delete(String id,Boolean enable) {
+		itemService.deleteByLogic(id,enable);
+		return "OK";
+	}
+	
+	
 }
