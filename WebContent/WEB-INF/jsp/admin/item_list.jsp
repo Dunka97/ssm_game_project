@@ -387,7 +387,7 @@
                         </div>
                    	  <div class="modal-body">
                         <!--描述：选择标签或平台的查询条件弹出层 表单-->
-	                    <form class="form-horizontal" id="search_tagsAndplatfromLayer" method="post">
+	                    <form class="form-horizontal" id="search_tagsAndplatfromLayer" enctype="multipart/form-data" method="post">
 	                    	<!-- item_id -->
 							<!-- <input type="hidden" id="edit_item_id" name="item_id"/> -->
 							
@@ -517,8 +517,22 @@
 			joinTagids("add_tagids",$("#add_item_tagids"));
 			joinTagids("add_platform",$("#add_item_platform"));
 			
+			//处理修改
+			joinTagids("edit_tagids",$("#edit_item_tagids"));
+			joinTagids("edit_platform",$("#edit_item_platform"));
+			
 			//add flag 通过类选择器，并绑定为其赋值
 			$(".add_item_flag").each(function(){
+				//绑定点击事件
+				$(this).click(function(){
+					if(this.checked)
+						$(this).val(1);
+					else
+						$(this).val(0);
+				});
+			});
+			//edit flag 通过类选择器，并绑定为其赋值
+			$(".edit_item_flag").each(function(){
 				//绑定点击事件
 				$(this).click(function(){
 					if(this.checked)
@@ -597,28 +611,7 @@
 					
 					setTagidsAndPlatformEcho($("input[name=edit_tagids]"), data.item_tagids);
 					setTagidsAndPlatformEcho($("input[name=edit_platform]"), data.item_platform); 
-				/* 	var allDataIds = $("input[name=edit_tagids]");
-					var itemIds = data.item_tagids.split("#");
-					//遍历，如果值一样，设置选中状态
-					for (var i = 0; i < allDataIds.length; i++) {
-						for (var j = 0; j < itemIds.length; j++) {
-							if(allDataIds[i].value == itemIds[j]){
-								allDataIds[i].checked = true;
-								break;
-							}
-						}
-					}
-					allDataIds = $("input[name=edit_platform]");
-					itemIds = data.item_platform.split("#");
-					//遍历，如果值一样，设置选中状态
-					for (var i = 0; i < allDataIds.length; i++) {
-						for (var j = 0; j < itemIds.length; j++) {
-							if(allDataIds[i].value == itemIds[j]){
-								allDataIds[i].checked = true;
-								break;
-							}
-						}
-					} */
+				
 					
 					if(data.item_cap_image != null)
 						$("#edit_item_cap_image_src").attr("src","/images/"+data.item_cap_image);
@@ -635,6 +628,22 @@
 					setFlagEcho("is_upcoming",data.is_upcoming);
 					setFlagEcho("is_new",data.is_new);
 					setFlagEcho("is_enable",data.is_enable);
+				}
+			});
+		}
+		//修改游戏
+		function updateItem(){
+			$.ajax({
+				type:"POST",
+				url: "${pageContext.request.contextPath }/admin/items/update",
+				//$("#add_items_form").serialize(),序列化不支持文件上传
+				data:new FormData($("#edit_items_form")[0]),
+				cache:false,
+				contentType:false,
+				processData:false,
+				success:function(){
+					alert("游戏修改成功!");
+					window.location.reload();
 				}
 			});
 		}

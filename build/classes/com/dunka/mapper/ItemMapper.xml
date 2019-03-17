@@ -55,4 +55,33 @@
 	<select id="selectItemInfoById" parameterType="String" resultType="ItemInfo">
 		select * from item_info where item_id = #{id}
 	</select>
+	
+	<!--//更新游戏信息
+	void update(ItemInfo itemInfo);  -->
+	<update id="update" parameterType="ItemInfo">
+		update item_info
+		<set>
+			<if test="item_id != null and item_id !=''">item_id = #{item_id},</if>
+			<if test="item_name != null and item_name !=''">item_name = #{item_name},</if>
+			<if test="item_tagids != null and item_tagids !=''">item_tagids = #{item_tagids},</if>
+			<if test="item_platform != null and item_platform !=''">item_platform = #{item_platform},</if>
+			<if test="item_discount != null and item_discount !=''">item_discount = #{item_discount},</if>
+			
+			
+			<if test="item_original_price != null and item_original_price !=''">item_original_price = #{item_original_price},</if>
+			<if test="item_cap_image != null and item_cap_image !=''">item_cap_image = #{item_cap_image},</if>
+			<if test="item_release_date != null and item_release_date !=''">item_release_date = #{item_release_date},</if>
+			<if test="is_hot != null and is_hot !=''">is_hot = #{is_hot},</if>
+			<if test="is_hot_sale != null and is_hot_sale !=''">is_hot_sale = #{is_hot_sale},</if>
+			
+			<if test="is_free != null and is_free !=''">is_free = #{is_free},</if>
+			<if test="is_specials != null and is_specials !=''">is_specials = #{is_specials},</if>
+			<if test="is_upcoming != null and is_upcoming !=''">is_upcoming = #{is_upcoming},</if>
+			<if test="is_new != null and is_new !=''">is_new = #{is_new},</if>
+			<if test="is_enable != null and is_enable !=''">is_enable = #{is_enable}</if>
+		</set>
+		where item_id = #{item_id}
+	</update>
+	
+	
   </mapper>

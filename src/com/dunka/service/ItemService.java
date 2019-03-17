@@ -17,6 +17,8 @@ public interface ItemService {
 	
 	//根据ID 返回ItemInfo
 	ItemInfo selectItemInfoById(String id);
+	//更新游戏信息
+	void update(ItemInfo itemInfo);
 	
 
 }

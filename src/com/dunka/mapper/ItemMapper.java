@@ -18,5 +18,7 @@ public interface ItemMapper {
 
 	//根据ID返回ItemInfo对象
 	ItemInfo selectItemInfoById(String id);
+	//更新游戏信息
+	void update(ItemInfo itemInfo);
 
 }

@@ -86,5 +86,10 @@ public class ItemServiceImpl implements ItemService {
 	public ItemInfo selectItemInfoById(String id) {
 		return itemMapper.selectItemInfoById(id);
 	}
+
+	@Override
+	public void update(ItemInfo itemInfo) {
+		itemMapper.update(itemInfo);
+	}
     
 }
