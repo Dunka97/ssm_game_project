@@ -109,7 +109,9 @@ public class ItemController {
 	@RequestMapping("/edit")
 	@ResponseBody
 	public ItemInfo save(String id) {
-		return itemService.selectItemInfoById(id);
+		ItemInfo itemInfo =  itemService.selectItemInfoById(id);
+		System.out.println(itemInfo);
+		return itemInfo;
 	}
 	
 }

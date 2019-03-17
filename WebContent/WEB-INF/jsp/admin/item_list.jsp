@@ -481,9 +481,10 @@
         <script src="${pageContext.request.contextPath }/admin/js/bootstrap-datepicker.js"></script>
    		<!-- jBox -->
         <script src="${pageContext.request.contextPath }/admin/js/jbox.min.js"></script>
-        <!-- 自定义js-->
+       <!-- 自定义js -->
+        <script src="${pageContext.request.contextPath }/admin/js/dunka_game_checkbox.js"></script>
         <script src="${pageContext.request.contextPath }/admin/js/dunka_game.js"></script>
-		
+        
         
         <!-- js代码 -->
         <script type="text/javascript">
@@ -593,23 +594,47 @@
 					$("#edit_item_name").val(data.item_name);
 					$("#edit_item_discount").val(data.item_discount);
 					$("#edit_item_original_price").val(data.item_original_price);
-					//处理checkbox状态回显
-					var allDataIds = $("input[name=edit_tagids]");
-					var itemIds = data.item_tagids.split("#");
 					
-					for(var i = 0; i<allDataIds.length; i++){
-						for(var j = 0; j<itemIds.length; j++){
+					setTagidsAndPlatformEcho($("input[name=edit_tagids]"), data.item_tagids);
+					setTagidsAndPlatformEcho($("input[name=edit_platform]"), data.item_platform); 
+				/* 	var allDataIds = $("input[name=edit_tagids]");
+					var itemIds = data.item_tagids.split("#");
+					//遍历，如果值一样，设置选中状态
+					for (var i = 0; i < allDataIds.length; i++) {
+						for (var j = 0; j < itemIds.length; j++) {
 							if(allDataIds[i].value == itemIds[j]){
 								allDataIds[i].checked = true;
 								break;
 							}
 						}
 					}
+					allDataIds = $("input[name=edit_platform]");
+					itemIds = data.item_platform.split("#");
+					//遍历，如果值一样，设置选中状态
+					for (var i = 0; i < allDataIds.length; i++) {
+						for (var j = 0; j < itemIds.length; j++) {
+							if(allDataIds[i].value == itemIds[j]){
+								allDataIds[i].checked = true;
+								break;
+							}
+						}
+					} */
 					
 					if(data.item_cap_image != null)
-					$("#edit_item_cap_image_src").attr("src","/images/"+data.item_cap_image);
-					
+						$("#edit_item_cap_image_src").attr("src","/images/"+data.item_cap_image);
+					else
+						$("#edit_item_cap_image_src").attr("src"," ");
+						
 					$("#edit_item_release_date").val(data.item_release_date);
+					
+					//设置标志位回显
+					setFlagEcho("is_hot",data.is_hot);
+					setFlagEcho("is_hot_sale",data.is_hot_sale);
+					setFlagEcho("is_free",data.is_free);
+					setFlagEcho("is_specials",data.is_specials);
+					setFlagEcho("is_upcoming",data.is_upcoming);
+					setFlagEcho("is_new",data.is_new);
+					setFlagEcho("is_enable",data.is_enable);
 				}
 			});
 		}
