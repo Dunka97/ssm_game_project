@@ -14,6 +14,8 @@
  	<url-pattern>*.woff</url-pattern>
  	<url-pattern>*.ttf</url-pattern>
  	<url-pattern>*.js</url-pattern>
+	 <url-pattern>*.jpg</url-pattern>
+	 <url-pattern>*.gif</url-pattern>
  </servlet-mapping>
   
    <!-- 过滤器 解决表单post提交 中文乱码问题 -->
