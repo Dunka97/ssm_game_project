@@ -463,12 +463,31 @@
 							<div class="tab_item_cap">
 								<img class="tab_item_cap_img"
 									src="/images/${item.item_cap_image }">
-							</div> <!-- 价格相关 -->
-							<div class="discount_block tab_item_discount no_discount">
-								<div class="discount_prices">
-									<div class="discount_final_price">${item.item_original_price }</div>
+							</div> 
+							<!-- 价格相关 -->
+							
+							<c:if test="${item.item_discount!=0 }"><!--有折扣 -->
+								<div class="discount_block tab_item_discount">
+									<div class="discount_pct">- ${item.item_discount}%</div>
+									<div class="discount_prices">
+										<div class="discount_original_price">¥ ${item.item_original_price}</div>
+										<div class="discount_final_price">¥ ${item.item_original_price * item.item_discount*0.01}</div>
+									</div>
 								</div>
-							</div>
+							</c:if>
+							<c:if test="${item.item_discount ==0 }"><!-- 无折扣 -->
+								<div class="discount_block tab_item_discount no_discount">
+									<div class="discount_prices">
+									<c:if test="${item.item_original_price!=0}">
+										<div class="discount_final_price">￥${item.item_original_price }</div>
+									</c:if>
+									<c:if test="${item.item_original_price==0 }">
+										<div class="discount_final_price">免费</div>
+									</c:if>
+									</div>
+								</div>
+							</c:if>
+							
 							<div class="tab_item_content">
 								<!-- 游戏名称 -->
 								<div class="tab_item_name">${item.item_name}</div>
