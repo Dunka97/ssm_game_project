@@ -33,8 +33,15 @@ public class ItemServiceImpl implements ItemService {
 	public List<ItemInfo> selectItemByVo(ItemInfoVo vo) {
 		//���û�о�����ǩ��ƽ̨ѡ���
 		List<ItemInfo> queryList = itemMapper.selectItemByVo(vo);
-		if(vo == null)
-		return queryList;
+		if(vo == null) {
+			List<ItemInfo> queryListView = new ArrayList<ItemInfo>();
+			for (ItemInfo itemInfo : queryList) {
+				if(itemInfo.getIs_enable()!=null && itemInfo.getIs_enable()==true )
+				queryListView.add(itemInfo);
+			}
+			return queryListView;
+		}
+		
 		//�жϱ�ǩ��ƽ̨�ַ����Ƿ�Ϊ��
 		if(vo.getItem_tagids()!=null && vo.getItem_tagids()!=""||
 				vo.getItem_platform()!=null &&vo.getItem_platform()!="") {
