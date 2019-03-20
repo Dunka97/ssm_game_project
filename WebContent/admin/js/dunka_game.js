@@ -29,6 +29,7 @@ function gameTagName(values,divObj,addr){
 	});
 }
 
+
 //拼接checkbox中的多选后的id,用#号分割
 function joinTagids(name,divObj){
 	console.log(name);

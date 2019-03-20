@@ -492,14 +492,15 @@
 								<!-- 游戏名称 -->
 								<div class="tab_item_name">${item.item_name}</div>
 								<!-- 平台和标签 -->
+								<!-- 隐藏域 获取标签平台 id 字符串 -->
+								
+								<input type="hidden" class="tab_item_tagids" value="${item.item_tagids}">
+								<input type="hidden" class="tab_item_platform" value="${item.item_platform}">
 								<div class="tab_item_details">
 									<!-- 平台 -->
-									<span class="platform_img win"></span>
 									<!-- 标签 -->
 									<div class="tab_item_top_tags">
-										<span class="top_tag">大型多人在线</span> <span class="top_tag">
-											角色扮演</span> <span class="top_tag"> 免费</span> <span class="top_tag">
-											魔法</span>
+										
 									</div>
 								</div>
 							</div>
@@ -863,4 +864,37 @@
 	type="text/javascript"></script>
 <script src="${pageContext.request.contextPath }/js/index.js"
 	type="text/javascript"></script>
+	  <!-- 自定义js -->
+        <script src="${pageContext.request.contextPath }/admin/js/dunka_game_checkbox.js"></script>
+        <script src="${pageContext.request.contextPath }/js/dunka_game_front.js"></script>
+      
+	<!-- JS代码 -->
+	<script type="text/javascript">
+	$(function(){
+		init();
+	})
+	function init(){
+		/* <!-- tab_item_tagids  tab_item_top_tags
+		tab_item_platform  tab_item_details --> */
+		//获取对应标签
+		var tagidsList = $(".tab_item_tagids");
+		//获取对应平台
+		var platformList = $(".tab_item_platform");
+		//标签细节
+		var tagidsDivList = $(".tab_item_top_tags");
+		//平台细节
+		var platformDivList = $(".tab_item_details");
+		
+		var addr = "${pageContext.request.contextPath }/admin/items/AdminTags";
+		
+		for(var i=0; i<tagidsList.length; i++){
+			gameTagNameView(tagidsList[i].value,tagidsDivList[i],addr,"tagids");
+		}
+		for(var i=0; i<platformList.length; i++){
+			gameTagNameView(platformList[i].value,platformDivList[i],addr,"platform");
+		}
+	}
+	</script>
+	
+	
 </html>
