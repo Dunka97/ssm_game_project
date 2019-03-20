@@ -29,6 +29,7 @@ public class IndexController {
 	public List<ItemInfo> sort(String name, Integer num){
 		System.out.println(name+num);
 		List<ItemInfo> itemList =  itemService.selectItemSortByFlag(name,num);
+		System.out.println(itemList);
 		return itemList;
 	}
 	

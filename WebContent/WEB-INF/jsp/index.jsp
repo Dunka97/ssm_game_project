@@ -902,7 +902,64 @@
 			dataType:"json",
 			data:{"name":name,"num":num},
 			success:function(data){
-				alert(data.length);
+				//alert(data[0].item_name);
+				var divObj = $("#top_item_list");
+				var str = "";
+				for(var i=0; i<data.length; i++){
+					str +=
+						'<a href="#" class="tab_item   app_impression_tracked">'+
+						'<div class="tab_item_cap">'+
+							'<img class="tab_item_cap_img'+
+								'src="/images/'+data[i].item_cap_image +'">'+
+						'</div>';
+					//	<!-- 价格相关 有折扣 -->
+						if(data[i].item_discount!=0){
+							str+=
+							'<div class="discount_block tab_item_discount">'+
+							'<div class="discount_pct">- '+data[i].item_discount +'%</div>'+
+							'<div class="discount_prices">'+
+								'<div class="discount_original_price">¥ '+data[i].item_original_price +'</div>'+
+								'<div class="discount_final_price">¥'+(data[i].item_discount*data[i].item_original_price *0.01) +'</div>'+
+							'</div>'+
+						'</div>';
+						}
+						if(data[i].item_discount==0){
+						//<!-- 无折扣 -->
+						 str+=
+							'<div class="discount_block tab_item_discount no_discount">'+
+								'<div class="discount_prices">';
+								if(data[i].item_original_price!=0){
+									 str+=
+									'<div class="discount_final_price">￥'+data[i].item_original_price +'</div>';
+								}
+								if(data[i].item_original_price==0){
+									str+=
+									'<div class="discount_final_price">免费</div>';
+								}
+								str+='</div>'+
+							'</div>';
+						}
+						str+=
+						'<div class="tab_item_content">'+
+							//<!-- 游戏名称 -->
+							'<div class="tab_item_name">'+data[i].item_name +'</div>'+
+							//<!-- 平台和标签 -->
+							//<!-- 隐藏域 获取标签平台 id 字符串 -->
+							'<input type="hidden" class="tab_item_tagids" value="'+data[i].item_tagids +'">'+
+							'<input type="hidden" class="tab_item_platform" value="'+data[i].item_platform +'">'+
+							'<div class="tab_item_details">'+
+								//<!-- 平台 -->
+								//<!-- 标签 -->
+								'<div class="tab_item_top_tags">'+
+									
+								'</div>'+
+							'</div>'+
+						'</div>'+
+						'<div style="clear: both;"></div>'+
+					'</a>';
+				}
+				$(divObj).html(str);
+				init();
 			}
 		});
 	}
