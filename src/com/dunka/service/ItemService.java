@@ -21,6 +21,8 @@ public interface ItemService {
 	void update(ItemInfo itemInfo);
 	//逻辑删除
 	void deleteByLogic(String id, Boolean enable);
+	//对标志位排序
+	List<ItemInfo> selectItemSortByFlag(String name, Integer num);
 
 	
 

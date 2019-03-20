@@ -26,4 +26,7 @@ public interface ItemMapper {
 	//逻辑删除
 	void deleteByLogic(@Param("id")String id, @Param("enable")Boolean enable);
 
+	//对标志位排序
+	List<ItemInfo> selectItemSortByFlag(@Param("name")String name, @Param("num")Integer num);
+
 }

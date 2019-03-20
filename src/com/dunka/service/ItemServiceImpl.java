@@ -96,5 +96,11 @@ public class ItemServiceImpl implements ItemService {
 	public void deleteByLogic(String id, Boolean enable) {
 		itemMapper.deleteByLogic(id,enable);
 	}
+
+	@Override
+	public List<ItemInfo> selectItemSortByFlag(String name, Integer num) {
+		return itemMapper.selectItemSortByFlag(name,num);
+	}
     
+	
 }

@@ -31,7 +31,7 @@ public class ItemInfo {
     private Boolean is_free;
     //特价否
     private Boolean is_specials;
-    //即将上架否
+    //即将上架
     private Boolean is_upcoming;
     //新品否
     private Boolean is_new;

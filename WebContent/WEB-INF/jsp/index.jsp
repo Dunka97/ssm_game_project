@@ -442,16 +442,16 @@
 				<h3 class="banner_tt">浏览 STEAM</h3>
 				<div class="button_container">
 					<div class="btn_wrapper">
-						<a href="#" class="big_button"> 新品 </a>
+						<a href="javaScript:void(0)" class="big_button" onclick="sort('is_new',6)"> 新品 </a>
 					</div>
 					<div class="btn_wrapper">
-						<a href="#" class="big_button"> 特价 </a>
+						<a href="javaScript:void(0)" class="big_button" onclick="sort('is_specials',6)"> 特价 </a>
 					</div>
 					<div class="btn_wrapper">
-						<a href="#" class="big_button"> 免费游戏 </a>
+						<a href="javaScript:void(0)" class="big_button" onclick="sort('is_free',6)"> 免费游戏 </a>
 					</div>
 					<div class="btn_wrapper">
-						<a href="#" class="big_button"> 即将推出 </a>
+						<a href="javaScript:void(0)" class="big_button" onclick="sort('is_upcoming',6)"> 即将推出 </a>
 					</div>
 				</div>
 				<!--标签 end-->
@@ -894,7 +894,18 @@
 			gameTagNameView(platformList[i].value,platformDivList[i],addr,"platform");
 		}
 	}
-	</script>
+	//对标志位进行排序
+	function sort(name,num){
+		$.ajax({
+			type:"POST",
+			url:"${pageContext.request.contextPath }/index/sort",
+			dataType:"json",
+			data:{"name":name,"num":num},
+			success:function(data){
+				alert(data.length);
+			}
+		});
+	}
 	
-	
+	</script>	
 </html>
