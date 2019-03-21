@@ -21,8 +21,8 @@
 			</if>
 		</where>
 		<choose>
-		<when test="sort_rule!=null and sort_rule!='' ">
-			order by ${sort_name} ${sort_rule}
+		<when test="sort_rule!=null and sort_rule!=''and sort_name!=null and sort_name!='' ">
+			order by ${sort_name} ${sort_rule}, item_release_date desc
 		</when>
 		<otherwise>order by item_release_date desc</otherwise>
 		</choose>
