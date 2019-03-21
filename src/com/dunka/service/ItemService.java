@@ -20,7 +20,7 @@ public interface ItemService {
 	//根据ID 返回ItemInfo
 	ItemInfo selectItemInfoById(String id);
 	//更新游戏信息
-	void update(ItemInfo itemInfo);
+	void update(ItemInfo itemInfo, MultipartFile image) throws Exception;
 	//逻辑删除
 	void deleteByLogic(String id, Boolean enable);
 	//对标志位排序

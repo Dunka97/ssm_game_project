@@ -82,10 +82,7 @@ public class ItemController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public String save(ItemInfo itemInfo,MultipartFile image) throws Exception {
-		System.out.println(itemInfo);
-		
 		itemService.save(itemInfo,image);
-		
 		return "OK";
 	}
 	//打开修改编辑窗口并回显数据
@@ -101,30 +98,7 @@ public class ItemController {
 	@RequestMapping("/update")
 	@ResponseBody
 	public String update(ItemInfo itemInfo,MultipartFile image) throws Exception {
-		System.out.println(itemInfo);
-		
-		//处理日期格式转换
-		String date = itemInfo.getItem_release_date();
-		String newDate = GameUtil.dateCovert(date);
-		itemInfo.setItem_release_date(newDate);
-		
-		if(image!=null && !image.getOriginalFilename().equals("")) {
-			//处理图片文件上传到服务器段
-			//图片名
-			String name = System.currentTimeMillis()+" ";
-			//后缀 jpg png
-			String extName = FilenameUtils.getExtension(image.getOriginalFilename());
-			//保存文件路径
-			String path = "E:\\GitRepositories\\ssm_game_project\\uploadImg\\";
-			//文件名
-			String filename = name + "." +extName;
-			image.transferTo(new File(path + filename));
-			//保存图片文件
-			itemInfo.setItem_cap_image(filename);
-		}
-	
-		itemService.update(itemInfo);
-		
+		itemService.update(itemInfo,image);
 		return "OK";
 	}
 	//逻辑删除 下架游戏

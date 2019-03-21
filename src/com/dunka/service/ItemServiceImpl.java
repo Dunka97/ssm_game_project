@@ -99,8 +99,9 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public void update(ItemInfo itemInfo) {
-		itemMapper.update(itemInfo);
+	public void update(ItemInfo itemInfo,MultipartFile image) throws Exception {
+		ItemInfo updateItemInfo = setItemInfo(itemInfo, image);
+		itemMapper.update(updateItemInfo);
 	}
 
 	@Override
@@ -120,18 +121,21 @@ public class ItemServiceImpl implements ItemService {
 					String newDate = GameUtil.dateCovert(date);
 					itemInfo.setItem_release_date(newDate);
 					
-					//处理图片文件上传到服务器段
-					//图片名
-					String name = System.currentTimeMillis()+" ";
-					//后缀 jpg png
-					String extName = FilenameUtils.getExtension(image.getOriginalFilename());
-					//保存文件路径
-					String path = "E:\\GitRepositories\\ssm_game_project\\uploadImg\\";
-					//文件名
-					String filename = name + "." +extName;
-					image.transferTo(new File(path + filename));
-					//保存图片文件
-					itemInfo.setItem_cap_image(filename);
+					if(image!=null) {
+						//处理图片文件上传到服务器段
+						//图片名
+						String name = System.currentTimeMillis()+" ";
+						//后缀 jpg png
+						String extName = FilenameUtils.getExtension(image.getOriginalFilename());
+						//保存文件路径
+						String path = "E:\\GitRepositories\\ssm_game_project\\uploadImg\\";
+						//文件名
+						String filename = name + "." +extName;
+						image.transferTo(new File(path + filename));
+						//保存图片文件
+						itemInfo.setItem_cap_image(filename);
+					}
+			
 					
 					//处理标志位不能为空
 					if(itemInfo.getIs_hot()==null)  
