@@ -65,10 +65,10 @@
 			<if test="item_name != null and item_name !=''">item_name = #{item_name},</if>
 			<if test="item_tagids != null and item_tagids !=''">item_tagids = #{item_tagids},</if>
 			<if test="item_platform != null and item_platform !=''">item_platform = #{item_platform},</if>
-			<if test="item_discount != null and item_discount !=''">item_discount = #{item_discount},</if>
+			<if test="item_discount != null ">item_discount = #{item_discount},</if>
 			
 			
-			<if test="item_original_price != null and item_original_price !=''">item_original_price = #{item_original_price},</if>
+			<if test="item_original_price != null ">item_original_price = #{item_original_price},</if>
 			<if test="item_cap_image != null and item_cap_image !=''">item_cap_image = #{item_cap_image},</if>
 			<if test="item_release_date != null and item_release_date !=''">item_release_date = #{item_release_date},</if>
 			<if test="is_hot != null and is_hot !=''">is_hot = #{is_hot},</if>
