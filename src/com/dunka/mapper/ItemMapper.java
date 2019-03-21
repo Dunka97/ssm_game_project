@@ -3,6 +3,7 @@ package com.dunka.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dunka.bean.ItemInfo;
 import com.dunka.bean.ItemInfoVo;

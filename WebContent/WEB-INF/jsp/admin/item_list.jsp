@@ -481,6 +481,8 @@
         <script src="${pageContext.request.contextPath }/admin/js/bootstrap-datepicker.js"></script>
    		<!-- jBox -->
         <script src="${pageContext.request.contextPath }/admin/js/jbox.min.js"></script>
+       	<!-- 自定义js文件-->
+        <script src="${pageContext.request.contextPath }/admin/js/dunka_game.js"></script>
        
         
         <!-- js代码 -->

@@ -1,15 +1,19 @@
 package com.dunka.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dunka.bean.ItemInfo;
 import com.dunka.bean.ItemInfoVo;
 import com.dunka.mapper.ItemMapper;
+import com.dunka.util.GameUtil;
 import com.mysql.fabric.xmlrpc.base.Array;
 
 /**
@@ -83,10 +87,10 @@ public class ItemServiceImpl implements ItemService {
 			return queryList;
 		}
 	}
-
 	@Override
-	public void save(ItemInfo itemInfo) {
-		itemMapper.save(itemInfo);
+	public void save(ItemInfo itemInfo,MultipartFile image) throws Exception {
+		ItemInfo setItemInfo = setItemInfo(itemInfo, image);
+		itemMapper.save(setItemInfo);
 	}
 
 	@Override
@@ -109,5 +113,42 @@ public class ItemServiceImpl implements ItemService {
 		return itemMapper.selectItemSortByFlag(name,num);
 	}
     
-	
+	//新增游戏、更新游戏的方法
+		private ItemInfo setItemInfo(ItemInfo itemInfo,MultipartFile image) throws Exception {
+			//处理日期格式转换
+					String date = itemInfo.getItem_release_date();
+					String newDate = GameUtil.dateCovert(date);
+					itemInfo.setItem_release_date(newDate);
+					
+					//处理图片文件上传到服务器段
+					//图片名
+					String name = System.currentTimeMillis()+" ";
+					//后缀 jpg png
+					String extName = FilenameUtils.getExtension(image.getOriginalFilename());
+					//保存文件路径
+					String path = "E:\\GitRepositories\\ssm_game_project\\uploadImg\\";
+					//文件名
+					String filename = name + "." +extName;
+					image.transferTo(new File(path + filename));
+					//保存图片文件
+					itemInfo.setItem_cap_image(filename);
+					
+					//处理标志位不能为空
+					if(itemInfo.getIs_hot()==null)  
+						itemInfo.setIs_hot(false);
+					if(itemInfo.getIs_hot_sale()==null)  
+						itemInfo.setIs_hot_sale(false);
+					if(itemInfo.getIs_free()==null)  
+						itemInfo.setIs_free(false);
+					if(itemInfo.getIs_specials()==null) 
+						itemInfo.setIs_specials(false);
+					if(itemInfo.getIs_upcoming()==null)  
+						itemInfo.setIs_upcoming(false);
+					if(itemInfo.getIs_new()==null)  
+						itemInfo.setIs_new(false);
+					if(itemInfo.getIs_enable()==null) 
+						itemInfo.setIs_enable(false);
+					
+					return itemInfo;
+		}
 }

@@ -2,6 +2,8 @@ package com.dunka.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.dunka.bean.ItemInfo;
 import com.dunka.bean.ItemInfoVo;
 import com.dunka.bean.SysDict;
@@ -13,7 +15,7 @@ public interface ItemService {
 //	����Vo������Ŀ
 	List<ItemInfo> selectItemByVo(ItemInfoVo vo);
 //�����Ϸ
-	void save(ItemInfo itemInfo);
+	void save(ItemInfo itemInfo, MultipartFile image) throws Exception;
 	
 	//根据ID 返回ItemInfo
 	ItemInfo selectItemInfoById(String id);
